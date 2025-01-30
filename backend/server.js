@@ -16,16 +16,14 @@ app.use(cors(corsOptions));
 //routers
 app.use('/api', QuizRouter);
 
-app.listen(port, (e) => {
-    if (e) return console.log(e);
-    console.log(`Server is running on port http://localhost:${port}`);
-    
-    mongoose
+
+ mongoose
         .connect(mongoUrl)
         .then(() => console.log("DB connected"))
         .catch((e) => console.log(e));
-});
 
 app.get("/", (req, res) => {
     res.send("Hello World!");
 });
+
+export default (req, res) => app(req, res);
